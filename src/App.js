@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import Board from './components/board';
 
 

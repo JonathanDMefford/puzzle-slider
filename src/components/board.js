@@ -1,6 +1,6 @@
 import React from 'react';
 import Tile from './tile';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 
 
 
@@ -12,6 +12,7 @@ class Board extends React.Component {
             tiles: []
         }
         this.moveTiles = this.moveTiles.bind(this);
+        this.randomizePuzzle = this.randomizePuzzle.bind(this);
     }
 
     buildPuzzle() {
@@ -20,9 +21,15 @@ class Board extends React.Component {
         for (let i = 0; i < tileAmount; i++) {
             let tileProperties = {
                 id: i,
-                currPos: i
+                currPos: i,
+                winPos: i,
+                type: 'regular'
             }
             newTiles.push(tileProperties);
+        }
+        if (newTiles[newTiles.length - 1].type == 'regular') {
+            newTiles[newTiles.length - 1].type = 'blank';
+            newTiles[newTiles.length - 1].id = '';
         }
         console.log(newTiles);
         this.setState({
@@ -34,19 +41,30 @@ class Board extends React.Component {
         this.buildPuzzle();
     }
 
-    moveTiles() {
-        console.log('here');
+    moveTiles(e) {
+        console.log(e.target.id);
+    }
+
+    randomizePuzzle() {
+        //method to randomize puzzle
     }
 
 
     render() {
         return (
             <Row className='mt-5'>
-                {this.state.tiles.map((item, idx) => (
-                    <Tile
-                        moveTiles={this.moveTiles}
-                    />
-                ))}
+                <Col sm="12" md={{ size: 6, offset: 3 }}>
+                    <Row className='my-5'>
+                        {this.state.tiles.map((item, idx) => (
+                            <Tile
+                                key={idx}
+                                tileProps={item}
+                                moveTiles={this.moveTiles}
+                            />
+                        ))}
+                    </Row>
+                    <Button color='info' onClick={this.randomizePuzzle()} block>Randomize</Button>
+                </Col>
             </Row>
         )
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 
 
 
@@ -11,14 +11,16 @@ class Tile extends React.Component {
     }
 
     handleClick(e) {
-        this.props.moveTiles();
+        this.props.moveTiles(e);
     }
 
 
     render() {
         return (
-            <Col className='col-3 border text-center' onClick={this.handleClick}>
-                Hello
+            <Col className='col-3 border border-dark rounded text-center'
+                tileProps={this.props.tileProps}
+                onClick={this.handleClick}>
+                {this.props.tileProps.id}
             </Col>
         )
     }
