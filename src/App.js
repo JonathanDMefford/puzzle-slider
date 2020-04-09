@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import { Container } from 'reactstrap';
 import Board from './components/board';
+import { Container } from 'reactstrap';
 
 
 

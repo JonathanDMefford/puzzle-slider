@@ -3,27 +3,16 @@ import { Col } from 'reactstrap';
 
 
 
-
-class Tile extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(e) {
-        this.props.moveTiles(e);
-    }
-
-
-    render() {
-        return (
-            <Col className='col-3 border border-dark rounded text-center'
-                tileProps={this.props.tileProps}
-                onClick={this.handleClick}>
-                {this.props.tileProps.id}
-            </Col>
-        )
-    }
+function Tile(props) {
+    return (
+        <Col 
+            className='col-3 border border-dark rounded text-center'
+            id={props.tileprops.id}
+            tileprops={props.tileprops}
+            onClick={() => {props.moveTiles(props.tileprops.id)}}>
+            {props.tileprops.currPos}
+        </Col>
+    )
 }
 
 

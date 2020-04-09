@@ -15,6 +15,7 @@ class Board extends React.Component {
         this.randomizePuzzle = this.randomizePuzzle.bind(this);
     }
 
+
     buildPuzzle() {
         let tileAmount = 16;
         let newTiles = [];
@@ -23,13 +24,12 @@ class Board extends React.Component {
                 id: i,
                 currPos: i,
                 winPos: i,
-                type: 'regular'
+                type: 'regular',
             }
             newTiles.push(tileProperties);
         }
-        if (newTiles[newTiles.length - 1].type == 'regular') {
+        if (newTiles[newTiles.length - 1].type === 'regular') {
             newTiles[newTiles.length - 1].type = 'blank';
-            newTiles[newTiles.length - 1].id = '';
         }
         console.log(newTiles);
         this.setState({
@@ -41,12 +41,39 @@ class Board extends React.Component {
         this.buildPuzzle();
     }
 
-    moveTiles(e) {
-        console.log(e.target.id);
+    // let zeroObj = this.state.tilePositions.find(i => i.currentPosition === 0)
+
+    moveTiles(currTile) {
+        let newTiles = this.state.tiles;
+        let neighbors = false;
+        let clickedTile = currTile;
+        let blankTile = this.state.tiles.findIndex(i => i.currPos === this.state.tiles.length - 1);
+        let clickedRow = parseInt(clickedTile / 4);
+        let clickedCol = clickedTile % 4;
+        let blankRow = parseInt(blankTile / 4);
+        let blankCol = blankTile % 4;
+
+        if (clickedRow === blankRow && Math.abs(clickedCol - blankCol) === 1) {
+            neighbors = true;
+        } else if (Math.abs(clickedRow - blankRow) === 1 && clickedCol === blankCol) {
+            neighbors = true;
+        } else {
+            neighbors = false;
+        }
+
+        if (neighbors === true) {
+            let newPos = newTiles[currTile].currPos;
+            newTiles[currTile].currPos = newTiles[blankTile].currPos;
+            newTiles[blankTile].currPos = newPos;
+        }
+
+        this.setState({
+            tiles: newTiles
+        })
     }
 
     randomizePuzzle() {
-        //method to randomize puzzle
+        //method to scramble puzzle
     }
 
 
@@ -58,7 +85,7 @@ class Board extends React.Component {
                         {this.state.tiles.map((item, idx) => (
                             <Tile
                                 key={idx}
-                                tileProps={item}
+                                tileprops={item}
                                 moveTiles={this.moveTiles}
                             />
                         ))}
