@@ -7,7 +7,7 @@ function Tile(props) {
     return (
         <Col 
             className='col-3 border border-dark rounded text-center'
-            id={props.tileprops.id}
+            id={props.tileprops.type}
             tileprops={props.tileprops}
             onClick={() => {props.moveTiles(props.tileprops.id)}}>
             {props.tileprops.currPos}

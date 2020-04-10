@@ -73,6 +73,9 @@ class Board extends React.Component {
 
     randomizePuzzle() {
         //method to scramble puzzle
+        for (let i = this.state.tiles.length; i > 0; i--) {
+
+        }
     }
 
 
@@ -80,7 +83,7 @@ class Board extends React.Component {
         return (
             <Row className='mt-5'>
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
-                    <Row className='my-5'>
+                    <Row className='mb-5'>
                         {this.state.tiles.map((item, idx) => (
                             <Tile
                                 key={idx}
