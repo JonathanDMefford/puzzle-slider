@@ -4,7 +4,6 @@ import { Row, Col, Button } from 'reactstrap';
 
 
 
-
 class Board extends React.Component {
     constructor(props) {
         super(props);
@@ -24,14 +23,14 @@ class Board extends React.Component {
                 id: i,
                 currPos: i,
                 winPos: i,
-                type: 'regular',
+                type: 'regular'
             }
             newTiles.push(tileProperties);
         }
         if (newTiles[newTiles.length - 1].type === 'regular') {
             newTiles[newTiles.length - 1].type = 'blank';
         }
-        console.log(newTiles);
+
         this.setState({
             tiles: newTiles
         })
@@ -40,8 +39,6 @@ class Board extends React.Component {
     componentDidMount() {
         this.buildPuzzle();
     }
-
-    // let zeroObj = this.state.tilePositions.find(i => i.currentPosition === 0)
 
     moveTiles(currTile) {
         let newTiles = this.state.tiles;
@@ -62,6 +59,8 @@ class Board extends React.Component {
         }
 
         if (neighbors === true) {
+            newTiles[currTile].type = 'blank';
+            newTiles[blankTile].type = 'regular';
             let newPos = newTiles[currTile].currPos;
             newTiles[currTile].currPos = newTiles[blankTile].currPos;
             newTiles[blankTile].currPos = newPos;

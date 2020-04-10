@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './components/board.css';
 import Board from './components/board';
 import { Container } from 'reactstrap';
 
