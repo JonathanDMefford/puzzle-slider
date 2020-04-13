@@ -73,9 +73,9 @@ class Board extends React.Component {
 
     randomizePuzzle() {
         //method to scramble puzzle
-        for (let i = this.state.tiles.length; i > 0; i--) {
+        // for (let i = this.state.tiles.length; i > 0; i--) {
 
-        }
+        // }
     }
 
 
